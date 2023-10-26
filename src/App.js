@@ -1,57 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
 export default function App() {
-  let code = "?";
 
   const validCode = "🐡🐠🐋";
+  const [totalCode, setTotalCode] = useState('')
+  
+  function handleClick(e) {
+    setTotalCode('')
 
+    setTotalCode(totalCode + e.target.innerText);
+
+    // totalCode.length <= 3
+    //   ? setTotalCode(totalCode + e.target.innerText)
+    //   : setTotalCode(totalCode);
+  }
+  // console.log(codeItem)
   return (
     <div className="container">
       <div className="button-container">
-        <button
-          type="button"
-          onClick={() => {
-            console.log("Update Code!");
-          }}
-        >
+        <button type="button" onClick={handleClick}>
           <span role="img" aria-label="Pufferfish">
             🐡
           </span>
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            console.log("Update Code!");
-          }}
-        >
+        <button type="button" onClick={handleClick}>
           <span role="img" aria-label="Whale">
             🐋
           </span>
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            console.log("Update Code!");
-          }}
-        >
+        <button type="button" onClick={handleClick}>
           <span role="img" aria-label="Clownfish">
             🐠
           </span>
         </button>{" "}
       </div>
 
-      <button
-        type="button"
-        onClick={() => {
-          console.log("Reset Code!");
-        }}
-      >
+      <button type="button" onClick={()=>setTotalCode('')}>
         Reset
       </button>
-      <h2>{code}</h2>
+      <h2>{totalCode}</h2>
 
-      {code === validCode && <p>Valid code!</p>}
+      {totalCode === validCode && <p>Valid code!</p>}
     </div>
   );
 }
